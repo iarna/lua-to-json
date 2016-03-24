@@ -32,6 +32,6 @@ will become
 ```
 
 Actual code will result in errors, as will identifiers outside of the
-left-hand-side of assignments. The LUA parser is provided by
+left-hand-side of assignments. The Lua parser is provided by
 [luaparser](https://npmjs.com/package/luaparser). The evaluator is provided
 by this module, and may be incomplete as yet.
