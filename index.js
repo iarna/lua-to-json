@@ -26,7 +26,12 @@ function luaEval (ast, parentTable) {
     }
     return parentTable
   } else if (ast.type === 'TableConstructorExpression') {
-    var table = {}
+    var table;
+    if (ast.fields.length > 0 && ast.fields[0].type === "TableValue") {
+      table = []
+    } else {
+      table = {}
+    }
     ast.fields.forEach(function (chunk) {
       luaEval(chunk, table)
     })
@@ -34,6 +39,9 @@ function luaEval (ast, parentTable) {
   } else if (ast.type === 'TableKey') {
     assert(parentTable, "Can't have a table key without a table to put it in")
     parentTable[luaEval(ast.key)] = luaEval(ast.value)
+    return parentTable
+  } else if (ast.type === 'TableValue') {
+    parentTable.push(luaEval(ast.value))
     return parentTable
   } else if (/Literal$/.test(ast.type)) {
     return ast.value
