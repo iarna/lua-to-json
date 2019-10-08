@@ -1,6 +1,6 @@
 {
   "name": "lua-to-json",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Convert Lua literals into a javascript object",
   "main": "index.js",
   "scripts": {
